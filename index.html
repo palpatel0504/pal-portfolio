@@ -155,7 +155,7 @@ nav::after{content:'';position:absolute;bottom:0;left:60px;right:60px;height:1px
 
 /* CERTIFICATES */
 .cert-list{margin-top:64px;}
-.cert-row{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:32px;padding:28px 0;border-top:1px solid var(--glass-border);transition:background .3s;}
+.cert-row{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:32px;padding:28px 0;border-top:1px solid var(--glass-border);transition:background .3s;text-decoration:none;color:inherit;}
 .cert-row:last-child{border-bottom:1px solid var(--glass-border);}
 .cert-row:hover{background:rgba(255,255,255,.02);}
 .cert-idx{font-family:var(--font-display);font-size:1.4rem;color:rgba(255,255,255,.15);}
@@ -469,13 +469,13 @@ footer{border-top:1px solid var(--glass-border);padding:32px 60px;display:flex;a
   <div class="container">
     <div class="reveal"><div class="s-label">Credentials</div><h2 class="s-heading">Certified &amp; <em>Proven</em></h2></div>
     <div class="cert-list reveal">
-      <div class="cert-row"><div class="cert-idx">01</div><div><div class="cert-name">Gen AI Agents: Transform Your Organization</div><div class="cert-issuer">Google Cloud · Coursera</div></div><div class="cert-icon-right">☁️</div></div>
-      <div class="cert-row"><div class="cert-idx">02</div><div><div class="cert-name">API Development and Model Serving</div><div class="cert-issuer">Coursera</div></div><div class="cert-icon-right">🔌</div></div>
-      <div class="cert-row"><div class="cert-idx">03</div><div><div class="cert-name">GenAI Chatbots: Create and Deploy OpenAI-Powered Chatbots</div><div class="cert-issuer">Coursera</div></div><div class="cert-icon-right">🤖</div></div>
-      <div class="cert-row"><div class="cert-idx">04</div><div><div class="cert-name">The Full Stack</div><div class="cert-issuer">Meta · Coursera · Aug 2024</div></div><div class="cert-icon-right">🏆</div></div>
-      <div class="cert-row"><div class="cert-idx">05</div><div><div class="cert-name">SQL (Basic) Certification</div><div class="cert-issuer">HackerRank</div></div><div class="cert-icon-right">🗄️</div></div>
-      <div class="cert-row"><div class="cert-idx">06</div><div><div class="cert-name">Building GUI Applications with Java</div><div class="cert-issuer">Coursera · Mar 2023</div></div><div class="cert-icon-right">☕</div></div>
-      <div class="cert-row"><div class="cert-idx">07</div><div><div class="cert-name">Introduction to Java Programming</div><div class="cert-issuer">Coursera · Mar 2023</div></div><div class="cert-icon-right">📚</div></div>
+      <a href="https://coursera.org/share/c4b8416fc933c4bceb6304a18b3a55c0" target="_blank" class="cert-row"><div class="cert-idx">01</div><div><div class="cert-name">Gen AI Agents: Transform Your Organization</div><div class="cert-issuer">Google Cloud · Coursera</div></div><div class="cert-icon-right">☁️</div></a>
+      <a href="https://coursera.org/share/5e2dc562639e278953b1e4ee1c36def5" target="_blank" class="cert-row"><div class="cert-idx">02</div><div><div class="cert-name">API Development and Model Serving</div><div class="cert-issuer">Coursera</div></div><div class="cert-icon-right">🔌</div></a>
+      <a href="https://coursera.org/share/7b42fe89bc53de44ec9780340f64a2c8" target="_blank" class="cert-row"><div class="cert-idx">03</div><div><div class="cert-name">GenAI Chatbots: Create and Deploy OpenAI-Powered Chatbots</div><div class="cert-issuer">Coursera</div></div><div class="cert-icon-right">🤖</div></a>
+      <a href="https://coursera.org/share/805616eac802650c5b36865c9959a940" target="_blank" class="cert-row"><div class="cert-idx">04</div><div><div class="cert-name">The Full Stack</div><div class="cert-issuer">Meta · Coursera · Aug 2024</div></div><div class="cert-icon-right">🏆</div></a>
+      <a href="https://www.hackerrank.com/certificates/3a266fc48ecd" target="_blank" class="cert-row"><div class="cert-idx">05</div><div><div class="cert-name">SQL (Basic) Certification</div><div class="cert-issuer">HackerRank</div></div><div class="cert-icon-right">🗄️</div></a>
+      <a href="https://coursera.org/share/fb524ab250c8906754acd1e741671234" target="_blank" class="cert-row"><div class="cert-idx">06</div><div><div class="cert-name">Building GUI Applications with Java</div><div class="cert-issuer">Coursera · Mar 2023</div></div><div class="cert-icon-right">☕</div></a>
+      <a href="https://coursera.org/share/004f5afc1030752f9aaa38d9900a5f12" target="_blank" class="cert-row"><div class="cert-idx">07</div><div><div class="cert-name">Introduction to Java Programming</div><div class="cert-issuer">Coursera · Mar 2023</div></div><div class="cert-icon-right">📚</div></a>
     </div>
   </div>
 </section>
@@ -526,14 +526,14 @@ footer{border-top:1px solid var(--glass-border);padding:32px 60px;display:flex;a
           </div>
           <div class="ai-msgs" id="ai-msgs">
             <div class="amsg b">
-              <div class="amsg-bubble">Hi 👋 I'm Pal's AI. Ask me anything — his projects, tech stack, internships, or why he'd be a perfect hire.</div>
+              <div class="amsg-bubble">Hi 👋 I'm Pal's AI. Ask me anything — her projects, tech stack, internships, or why she'd be a perfect hire.</div>
               <div class="amsg-time">Just now</div>
             </div>
           </div>
           <div class="ai-chips" id="ai-chips">
             <button class="ai-chip" onclick="sendSug(this)">What projects has Pal built?</button>
             <button class="ai-chip" onclick="sendSug(this)">Why hire Pal?</button>
-            <button class="ai-chip" onclick="sendSug(this)">His AI experience?</button>
+            <button class="ai-chip" onclick="sendSug(this)">Her AI experience?</button>
             <button class="ai-chip" onclick="sendSug(this)">BankBenchers role?</button>
           </div>
           <div class="ai-key-notice" id="ai-notice">⚠ Add API key in .env to enable live AI responses</div>
@@ -695,8 +695,8 @@ document.querySelectorAll('.mosaic-card').forEach(card=>{
 });
 
 // AI CHAT
-const API_KEY=window.ANTHROPIC_API_KEY||new URLSearchParams(location.search).get('key')||'';
-if(API_KEY)document.getElementById('ai-notice').style.display='none';
+const API_KEY=window.OPENROUTER_API_KEY||new URLSearchParams(location.search).get('key')||'';
+if(API_KEY && API_KEY !== 'your_key_here' && API_KEY !== 'YOUR_KEY_HERE')document.getElementById('ai-notice').style.display='none';
 const PAL=`You are a confident, polished AI assistant representing Pal Patel's portfolio. Speak professionally and concisely. Be impressive — like an excellent recruiter speaking about a top-tier candidate.
 
 PAL PATEL:
@@ -729,10 +729,10 @@ function removeTyping(){const t=document.getElementById('tb');if(t)t.remove();}
 function fallback(q){
   q=q.toLowerCase();
   if(q.includes('project')||q.includes('built'))return"Pal has shipped 7+ projects — highlights include a LangChain-powered AI Report Builder, a real-time face detection attendance system using OpenCV, and a ChatGPT clone with Claude Haiku streaming. Each project demonstrates end-to-end ownership from architecture to deployment.";
-  if(q.includes('hire')||q.includes('why'))return"Pal brings production AI/ML experience that most students simply don't have — he's building LangChain + FastAPI systems in a live product at BankBenchers right now, trained at Microsoft, and has shipped 7+ real projects. He's not just learning AI; he's deploying it.";
-  if(q.includes('skill')||q.includes('tech')||q.includes('stack'))return"Core: Python · FastAPI · LangChain RAG · HuggingFace · OpenCV · FAISS. Extended: Flask, Streamlit, Google Sheets API, MySQL, Linux. APIs: OpenAI, Gemini, OpenRouter. He writes Python professionally and understands the full AI/ML stack.";
-  if(q.includes('intern')||q.includes('bank'))return"Pal was campus-selected for BankBenchers where he's currently building production AI/ML features using FastAPI, LangChain, and HuggingFace. Prior to that: 78hrs of Microsoft Data & AI training and a GTU-certified AI internship at CSRBOX.";
-  return"Pal Patel is a final-year CS student who thinks and builds like a professional — 4 internships, 7 projects, production AI/ML experience, and a Microsoft Data & AI credential. Add your API key to unlock fully live answers about his background.";
+  if(q.includes('hire')||q.includes('why'))return"Pal brings production AI/ML experience that most students simply don't have — she's building LangChain + FastAPI systems in a live product at BankBenchers right now, trained at Microsoft, and has shipped 7+ real projects. She's not just learning AI; she's deploying it.";
+  if(q.includes('skill')||q.includes('tech')||q.includes('stack'))return"Core: Python · FastAPI · LangChain RAG · HuggingFace · OpenCV · FAISS. Extended: Flask, Streamlit, Google Sheets API, MySQL, Linux. APIs: OpenAI, Gemini, OpenRouter. She writes Python professionally and understands the full AI/ML stack.";
+  if(q.includes('intern')||q.includes('bank'))return"Pal was campus-selected for BankBenchers where she's currently building production AI/ML features using FastAPI, LangChain, and HuggingFace. Prior to that: 78hrs of Microsoft Data & AI training and a GTU-certified AI internship at CSRBOX.";
+  return"Pal Patel is a final-year CS student who thinks and builds like a professional — 4 internships, 7 projects, production AI/ML experience, and a Microsoft Data & AI credential. Add your API key to unlock fully live answers about her background.";
 }
 async function sendMsg(){
   const inp=document.getElementById('ai-input');
@@ -742,14 +742,14 @@ async function sendMsg(){
   document.getElementById('ai-send').disabled=true;
   addMsg(txt,'user');hist.push({role:'user',content:txt});
   showTyping();
-  if(!API_KEY){
+  if(!API_KEY || API_KEY === 'your_key_here' || API_KEY === 'YOUR_KEY_HERE'){
     setTimeout(()=>{removeTyping();const r=fallback(txt);addMsg(r,'bot');hist.push({role:'assistant',content:r});document.getElementById('ai-send').disabled=false;},900);
     return;
   }
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':API_KEY,'anthropic-version':'2023-06-01'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:400,system:PAL,messages:hist})});
+    const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${API_KEY}`},body:JSON.stringify({model:'anthropic/claude-3-haiku',messages:[{role:'system',content:PAL},...hist]})});
     const data=await res.json();removeTyping();
-    const reply=data.content?.[0]?.text||'Something went wrong — please try again.';
+    const reply=data.choices?.[0]?.message?.content || (data.error ? `API Error: ${data.error.message}` : 'Something went wrong — please try again.');
     addMsg(reply,'bot');hist.push({role:'assistant',content:reply});
   }catch(e){removeTyping();addMsg('Network error. Check your API key and try again.','bot');}
   document.getElementById('ai-send').disabled=false;
