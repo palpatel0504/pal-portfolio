@@ -695,10 +695,8 @@ document.querySelectorAll('.mosaic-card').forEach(card=>{
 });
 
 // AI CHAT
-const CLIENT_API_KEY=window.OPENROUTER_API_KEY||new URLSearchParams(location.search).get('key')||'';
-const hasClientApiKey=CLIENT_API_KEY && CLIENT_API_KEY !== 'your_key_here' && CLIENT_API_KEY !== 'YOUR_KEY_HERE';
-const useBackendApi=!hasClientApiKey && !['localhost','127.0.0.1'].includes(location.hostname);
-if(hasClientApiKey || useBackendApi)document.getElementById('ai-notice').style.display='none';
+const useBackendApi=true;
+if(useBackendApi)document.getElementById('ai-notice').style.display='none';
 const PAL=`You are a confident, polished AI assistant representing Pal Patel's portfolio. Speak professionally and concisely. Be impressive — like an excellent recruiter speaking about a top-tier candidate.
 
 PAL PATEL:
@@ -723,7 +721,9 @@ let hist=[];
 const ts=()=>new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
 function addMsg(txt,role){
   const d=document.createElement('div');d.className='amsg '+(role==='user'?'u':'b');
-  d.innerHTML=`<div class="amsg-bubble">${txt}</div><div class="amsg-time">${ts()}</div>`;
+  const bubble=document.createElement('div');bubble.className='amsg-bubble';bubble.textContent=txt;
+  const time=document.createElement('div');time.className='amsg-time';time.textContent=ts();
+  d.appendChild(bubble);d.appendChild(time);
   msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
 }
 function showTyping(){const d=document.createElement('div');d.className='amsg b';d.id='tb';d.innerHTML='<div class="typing-b"><div class="tb-dot"></div><div class="tb-dot"></div><div class="tb-dot"></div></div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;}
@@ -744,19 +744,14 @@ async function sendMsg(){
   document.getElementById('ai-send').disabled=true;
   addMsg(txt,'user');hist.push({role:'user',content:txt});
   showTyping();
-  if(!hasClientApiKey && !useBackendApi){
-    setTimeout(()=>{removeTyping();const r=fallback(txt);addMsg(r,'bot');hist.push({role:'assistant',content:r});document.getElementById('ai-send').disabled=false;},900);
-    return;
-  }
   try{
     const payload={messages:[{role:'system',content:PAL},...hist]};
-    const res=hasClientApiKey
-      ? await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${CLIENT_API_KEY}`},body:JSON.stringify({model:'anthropic/claude-3-haiku',...payload})})
-      : await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     const data=await res.json();removeTyping();
-    const reply=data.choices?.[0]?.message?.content || (data.error ? `API Error: ${data.error.message}` : 'Something went wrong — please try again.');
+    if(!res.ok)throw new Error(data.error?.message || 'Chat request failed');
+    const reply=data.choices?.[0]?.message?.content || 'Something went wrong — please try again.';
     addMsg(reply,'bot');hist.push({role:'assistant',content:reply});
-  }catch(e){removeTyping();addMsg('Live chat is temporarily unavailable. Check the deployment environment variable and try again.','bot');}
+  }catch(e){removeTyping();const r=fallback(txt);addMsg(r,'bot');hist.push({role:'assistant',content:r});}
   document.getElementById('ai-send').disabled=false;
 }
 function sendSug(btn){document.getElementById('ai-input').value=btn.textContent;sendMsg();}

@@ -1,4 +1,4 @@
-"""Run: python server.py  →  http://localhost:8080"""
+"""Run: python server.py  ->  http://localhost:8080"""
 import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
@@ -19,7 +19,6 @@ class H(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path.split('?')[0] in ('/', '/index.html'):
             html = Path('index.html').read_text('utf-8')
-            html = html.replace('</head>', f'\n<script>window.OPENROUTER_API_KEY="{KEY}";</script>\n</head>', 1)
             body = html.encode()
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
@@ -31,21 +30,24 @@ class H(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if self.path == '/api/chat':
-            import api.chat
-            handler = api.chat.handler(self.request, self.client_address, self.server)
+            from api.chat import handle_request
+            handle_request(self)
         else:
             self.send_response(404); self.end_headers()
 
     def do_OPTIONS(self):
         if self.path == '/api/chat':
-            import api.chat
-            handler = api.chat.handler(self.request, self.client_address, self.server)
+            self.send_response(204)
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+            self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+            self.end_headers()
         else:
             self.send_response(200); self.end_headers()
 
     def log_message(self, f, *a): print(f"  {a[0]} {a[1]}")
 
 if __name__ == '__main__':
-    print(f"\n🚀  http://localhost:8080")
-    print(f"   {'✅ API Key loaded' if KEY and KEY.lower() != 'your_key_here' else '⚠️  Add key to .env first'}\n")
+    print(f"\nhttp://localhost:8080")
+    print(f"   {'API Key loaded' if KEY and KEY.lower() != 'your_key_here' else 'Add OPENROUTER_API_KEY to .env first'}\n")
     HTTPServer(('', 8080), H).serve_forever()
